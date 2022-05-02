@@ -16,6 +16,7 @@ public class Rectangle extends Geometry implements Comparable{
 		super(2);
 		this.p1 = p1;
 		this.p2 = p2;
+		
 	}
 
 	@Override
