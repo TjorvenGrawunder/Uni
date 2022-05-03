@@ -41,24 +41,85 @@ public class Rectangle extends Geometry implements Comparable{
 
 	@Override
 	public Geometry encapsulate(Geometry other) {
-		Point2D p1;
-		Point2D p2;
+		Point2D p1 = null;
+		Point2D p2 = null;
 		if(other.dimensions() != 2) {
 			return null;
 		}else {
 			if(other.volume() != 0) {
 				Rectangle tempRec = (Rectangle) other;
+				//unten links
 				if(tempRec.getUpperRightCorner().getX() < this.getUpperRightCorner().getX() && tempRec.getUpperRightCorner().getY() < this.getUpperRightCorner().getY()) {
 					p1 = this.getUpperRightCorner();
 					p2 = tempRec.getLowerLeftCorner();
-				}else {
+				//oben rechts
+				}else if(tempRec.getUpperRightCorner().getX() > this.getUpperRightCorner().getX() && tempRec.getUpperRightCorner().getY() > this.getUpperRightCorner().getY()) {
 					p1 = tempRec.getUpperRightCorner();
 					p2 = this.getLowerLeftCorner();
+				//unten rechts
+				}else if(tempRec.getUpperRightCorner().getX() < this.getUpperRightCorner().getX() && tempRec.getUpperRightCorner().getY() > this.getUpperRightCorner().getY()) {
+					p1 = tempRec.getLowerLeftCorner();
+					p1.setX(tempRec.getUpperRightCorner().getX());
+					p2 = this.getLowerLeftCorner();
+					p2.setY(this.getUpperRightCorner().getY());
+				//oben links
+				}else if(tempRec.getUpperRightCorner().getX() > this.getUpperRightCorner().getX() && tempRec.getUpperRightCorner().getY() < this.getUpperRightCorner().getY()) {
+					p1 = tempRec.getLowerLeftCorner();
+					p1.setY(tempRec.getUpperRightCorner().getX());
+					p2 = this.getLowerLeftCorner();
+					p2.setX(this.getUpperRightCorner().getX());
 				}
 			}else {
 				p1 = (Point2D) other;
+				//Oberhalb
 				if(p1.getY() < this.getUpperRightCorner().getY()) {
-					
+					//in der Mitte
+					if(p1.getX() < this.getUpperRightCorner().getX() && p1.getX() > this.getLowerLeftCorner().getX()) {						
+						p2 = this.getUpperRightCorner();
+						p2.setY(p1.getY());
+						p1 = this.getLowerLeftCorner();
+					//links
+					}else if(p1.getX() < this.getLowerLeftCorner().getX()) {
+						p2 = this.getLowerLeftCorner();
+						p2.setX(this.getUpperRightCorner().getX());
+					//rechts
+					}else if(p1.getX() > this.getUpperRightCorner().getX()) {
+						p2 = this.getLowerLeftCorner();
+					}
+				//unterhalb
+				}else if(p1.getY() < this.getLowerLeftCorner().getY()) {
+					//in der Mitte
+					if(p1.getX() < this.getUpperRightCorner().getX() && p1.getX() > this.getLowerLeftCorner().getX()) {						
+						p2 = this.getLowerLeftCorner();
+						p2.setY(p1.getY());
+						p1 = this.getUpperRightCorner();
+					//links
+					}else if(p1.getX() < this.getLowerLeftCorner().getX()) {
+						p2 = this.getUpperRightCorner();
+					//rechts
+					}else if(p1.getX() > this.getUpperRightCorner().getX()) {
+						p2 = this.getLowerLeftCorner();
+						p2.setY(this.getUpperRightCorner().getY());
+					}
+				//mittig
+				}else {
+					//in der Mitte
+					if(p1.getX() < this.getUpperRightCorner().getX() && p1.getX() > this.getLowerLeftCorner().getX()) {						
+						p2 = this.getLowerLeftCorner();
+						p1 = this.getUpperRightCorner();
+					//links
+					}else if(p1.getX() < this.getLowerLeftCorner().getX()) {
+						p2 = this.getUpperRightCorner();
+						double tmpX = p1.getX();
+						p1 = this.getLowerLeftCorner();
+						p1.setX(tmpX);
+					//rechts
+					}else if(p1.getX() > this.getUpperRightCorner().getX()) {
+						p2 = this.getLowerLeftCorner();
+						double tmpX = p1.getX();
+						p1 = this.getUpperRightCorner();
+						p1.setX(tmpX);
+					}
 				}
 			}
 			Rectangle rec = new Rectangle(p1, p2);
