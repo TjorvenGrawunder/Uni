@@ -30,13 +30,22 @@ public class Point extends Geometry implements Comparable{
 	public double volume() {
 		return 0;
 	}
-
+	/*
+	 * (non-Javadoc)
+	 * @see Aufgabe1.Geometry#encapsulate(Aufgabe1.Geometry)
+	 * Die Funktion ruft encapsulate des Volumes auf, da dort bereits Volume Point abgehandelt wird oder erzeugt ein neues Volume ziwschen zwei Points.
+	 */
 	@Override
 	public Geometry encapsulate(Geometry other) {
 		if(other.dimensions() != this.dimensions()) {
 			return null;
+		}else {
+			if(other.volume() != 0) {
+				return ((Volume)other).encapsulate(this);
+			}else {
+				return new Volume(this, (Point)other);
+			}
 		}
-		return null;
 	}
 	/*
 	 * Das Volumen des Punktes wird mit einem anderen Objekt verglichen. Falls das Volumen des 
