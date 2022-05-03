@@ -12,7 +12,10 @@ import java.util.ArrayList;
 public class Point extends Geometry implements Comparable{
 	
 	private ArrayList<Double> dimensions = new ArrayList<Double>();
-
+	/*
+	 * Ein neuer n-dimensionaler Punkt wird erzeugt. Der Super Konstruktor wird mit der Anzahl der
+	 * Dimensionen aufgerufen und die übergebende Liste wird in einer Liste der Klasse gespeichert.
+	 */
 	public Point(ArrayList<Double> dimensions) {
 		super(dimensions.size());
 		for(int i = 0; i < dimensions.size(); i++) {
@@ -20,7 +23,9 @@ public class Point extends Geometry implements Comparable{
 		}
 		
 	}
-
+	/*
+	 * Volumen der Geometry wird ausgegeben. Bei einem Point immer 0.
+	 */
 	@Override
 	public double volume() {
 		return 0;
@@ -33,11 +38,28 @@ public class Point extends Geometry implements Comparable{
 		}
 		return null;
 	}
-
+	/*
+	 * Das Volumen des Punktes wird mit einem anderen Objekt verglichen. Falls das Volumen des 
+	 * anderen Objekts nicht 0 ist wird 1 für groeßer ausgegeben. Ansonsten 0.
+	 * -1: kleiner
+	 * 0: gleich
+	 * 1: groeßer
+	 */
 	@Override
 	public int compareTo(Object o) {
-		// TODO Auto-generated method stub
-		return 0;
+		if(((Geometry) o).volume() == 0) {
+			return 0;
+		}else {
+			return 1;
+		}
+	}
+
+	public ArrayList<Double> getDimensions() {
+		return dimensions;
+	}
+
+	public void setDimensions(ArrayList<Double> dimensions) {
+		this.dimensions = dimensions;
 	}
 
 }
