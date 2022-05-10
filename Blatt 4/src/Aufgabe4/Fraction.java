@@ -190,6 +190,7 @@ public class Fraction {
 		   return new Fraction(num, denom);
 	   }else {
 		   System.err.println("Keine gueltige Fraction eingegeben. Eine Fraction muss dem regulaeren Ausdruck [0-9]+/[1-9][0-9]* entsprechen");
+		   System.exit(-1);
 		   return null;
 	   }
    }

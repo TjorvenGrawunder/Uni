@@ -53,6 +53,7 @@ public class Calculator {
 			
 		}else {
 			System.err.println("Error. Please enter a valid operator");
+			System.exit(-1);
 			return null;
 		}
 		return result;
