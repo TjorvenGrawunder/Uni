@@ -1,11 +1,13 @@
 package Aufgabe1;
 
+
 public class ListElem<T> extends Entry{
 	private ListElem<T> next;
 	private ListElem<T> previous;
+	T content;
 	
-	ListElem(){
-		
+	ListElem(T c){
+		this.content = c;
 	}
 
 	public ListElem<T> getNext() {
@@ -22,6 +24,14 @@ public class ListElem<T> extends Entry{
 
 	public void setPrevious(ListElem<T> previous) {
 		this.previous = previous;
+	}
+
+	public T getContent() {
+		return content;
+	}
+
+	public void setContent(T content) {
+		this.content = content;
 	}
 
 }
