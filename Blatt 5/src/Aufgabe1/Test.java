@@ -16,18 +16,23 @@ public class Test {
 		MyList<String> originalList = new MyList<String>();
 		
 
-		
+		/*
+		 * Pruefung auf absolute Anforderungen
+		 */
 		assert(originalList.clone() != originalList) : "Kopie hat die gleiche Referenz";
 		assert(originalList.clone().getClass() == originalList.getClass()) : "Klasse vom Original und dem Klon sind nicht gleich";
-		assert(originalList.clone().equals(originalList)) : "Das Original und die Kopie sind nicht gleich";
+		/*
+		 * Pruefung auf nicht absolute Anforderung
+		 */
+		//assert(originalList.clone().equals(originalList)) : "Das Original und die Kopie sind nicht gleich";
 		
 		/*
-		 * Werden Elemente kopiert?
+		 * Werden Elemente kopiert und sind die Listen unabhaengig?
 		 */
 		for(int i = 0; i < 12; i++) {
 			originalList.add("A");
 		}
-		System.out.println("Liste 1:");
+		System.out.println("Original:");
 		while(!originalList.endpos()) {
 			try {
 				originalList.advance();
