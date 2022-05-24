@@ -29,6 +29,8 @@ public class Test {
 		/*
 		 * Werden Elemente kopiert und sind die Listen unabhaengig?
 		 */
+		MyList<String> copyList = originalList.clone();
+
 		for(int i = 0; i < 12; i++) {
 			originalList.add("A");
 		}
@@ -42,7 +44,6 @@ public class Test {
 			}
 		}
 		System.out.println("Kopie: ");
-		MyList<String> copyList = originalList.clone();
 		while(!copyList.endpos()) {
 			copyList.advance();
 			System.out.println(copyList.elem());

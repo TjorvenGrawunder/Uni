@@ -12,12 +12,10 @@ import java.io.RandomAccessFile;
 public class IntArrWrap {
 	String path;
 	RandomAccessFile accFile;
-	int[] arr;
 	
 	public IntArrWrap(int[] a, String p) {
-		this.arr = a;
 		this.path = p;
-		createFile();
+		createFile(a);
 	}
 	/**
 	 * Zugriff auf ein bereits existierendes Array. Sollte es nicht existieren wird eine Exception ausgeworfen.
@@ -35,7 +33,7 @@ public class IntArrWrap {
 	 * Neues File wird erstellt. Sollte die Datei nicht existieren wird sie angelegt. Wenn sie existiert wird das RandomAccesFile
 	 * mit dem existierenden File erstellt und dieses wird geloescht und neu beschrieben.
 	 */
-	public void createFile() {
+	public void createFile(int[] arr) {
 		File file = new File(path);
 		if(!file.exists()) {
 			try {
@@ -86,7 +84,7 @@ public class IntArrWrap {
 	 * @return
 	 */
 	public int getAt(int index) {
-		if(index > 0 && index < getLength() ) {
+		if(index >= 0 && index < getLength() ) {
 			try {
 				accFile.seek(index*4);
 				return accFile.readInt();

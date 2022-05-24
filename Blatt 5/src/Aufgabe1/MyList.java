@@ -110,6 +110,9 @@ public class MyList<T> implements Cloneable {
       }
       pos.next = pos.next.next;
    }
+   /**
+    * Kommentar
+    */
    
    public MyList<T> clone(){
 	   try {

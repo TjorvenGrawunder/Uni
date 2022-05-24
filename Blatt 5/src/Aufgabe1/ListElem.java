@@ -1,7 +1,7 @@
 package Aufgabe1;
 
 
-public class ListElem<T> extends Entry{
+public class ListElem<T> extends EntryNew{
 	private ListElem<T> next;
 	private ListElem<T> previous;
 	T content;
