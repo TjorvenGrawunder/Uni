@@ -4,18 +4,20 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.FileVisitResult;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Dateisystem implements Visitable<File> {
 	
 	File root;
 	
 	public Dateisystem(File root) {
+		this.root = root;
 		if(!this.root.exists()) {
 			throw new IllegalArgumentException(root.getPath() + "existiert nicht");
 		}
-		this.root = root;
+		//this.root = root;
 
-		System.out.println(root.getAbsolutePath().replaceAll(root.getPath(), ""));
+		System.out.println();
 	}
 
 	@Override
@@ -29,7 +31,12 @@ public class Dateisystem implements Visitable<File> {
 		}
 		
 	}
-	
+	/**
+	 * 
+	 * @param current
+	 * @param v
+	 * @return
+	 */
 	public VisitResult nextFile(File current, Visitor<File> v) {
 		if(!current.canRead()) {
 			return v.visitFailed(current);
@@ -39,7 +46,7 @@ public class Dateisystem implements Visitable<File> {
 			switch(tmp) {
 			case CONTINUE:
 				File[] files = current.listFiles();
-				
+				Arrays.sort(files);
 				for(File f : files) {
 					if(nextFile(f, v) == VisitResult.END) {
 						return VisitResult.END;

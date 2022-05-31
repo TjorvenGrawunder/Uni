@@ -3,7 +3,7 @@ package Aufgabe1;
 import java.io.File;
 import java.util.Arrays;
 
-public class Ls implements Visitor<File> {
+public class Ls{
 	
 	static boolean r = false;
 	static boolean s = false;
@@ -23,43 +23,25 @@ public class Ls implements Visitor<File> {
 			}
 		}
 		String[] paths = Arrays.copyOfRange(args, i, args.length);
-		//TO-DO
-		Ls ls = new Ls();
+		
+		if(paths.length == 0) {
+			paths = new String[] { "." };
+		}
+		
+		LsVisitor visitor = new LsVisitor(r, s);
 		
 		for(String path : paths) {
+			System.out.println("Listing " + path);
 			File f = new File(path);
 			if(!f.exists()) {
-				System.err.println(f.getAbsolutePath() + " existiert nicht");
+				System.err.println(" existiert nicht");
 			}else {
 				//TO-DO
-				new Dateisystem(f).accept(ls);
+				new Dateisystem(f).accept(visitor);
 			}
 		}
 	}
-
-	@Override
-	public VisitResult preVisit(File o) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public VisitResult postVisit(File o) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public VisitResult visit(File o) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public VisitResult visitFailed(File o) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
 	
 }

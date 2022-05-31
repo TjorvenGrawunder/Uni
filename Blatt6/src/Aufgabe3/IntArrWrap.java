@@ -64,7 +64,7 @@ public class IntArrWrap {
 	 */
 	public void change(int index, int number) {
 		try {
-			if(index > 0 && index < getLength() ) {
+			if(index >= 0 && index < getLength() ) {
 				accFile.seek(index*4);
 				accFile.writeInt(number);
 			}else{
