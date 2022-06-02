@@ -40,7 +40,6 @@ public class Ls{
 			if(!f.exists()) {
 				System.err.println(" existiert nicht");
 			}else {
-				//TO-DO
 				new Dateisystem(f).accept(visitor);
 			}
 		}
