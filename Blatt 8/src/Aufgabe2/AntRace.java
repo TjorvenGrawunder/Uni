@@ -5,7 +5,7 @@ public class AntRace implements AntFields {
 
 	public static void main(String[] args) {
 
-		AntField field = new AntField(FIELD4);
+		AntField field = new AntField(FIELD1);
 
 		Ant ant = new Ant(field, 2, 4, 1);
 

@@ -27,12 +27,6 @@ public class Main {
 			System.exit(-1);
 		}
 		File f = new File(args[0]);
-		try {
-			f.createNewFile();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		Timer t = new Timer();
 		//ShutdownHook funktioniert nicht in Eclipse, da CTRL+C nicht erkannt wird und terminate das Programm nicht normal beendet
 		Runtime.getRuntime().addShutdownHook(new Thread() {

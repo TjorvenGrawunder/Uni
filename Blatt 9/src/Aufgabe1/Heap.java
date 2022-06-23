@@ -41,7 +41,7 @@ private static final int DEFAULT_INITIAL_CAPACITY = 11;
    /*
     * The heap as Object[], it is not possible to instantiate a generic array.
     */
-   private Object[] heap;
+   private transient Object[] heap;
 
    private int size = 0;
 

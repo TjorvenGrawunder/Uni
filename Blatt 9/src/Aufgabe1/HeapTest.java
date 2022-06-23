@@ -13,13 +13,12 @@ import java.io.ObjectOutputStream;
 /**
  * Heap Test
  * 
- * @author Glenn, Linus
+ * @author Tjorven
  *
  */
 public class HeapTest {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		
 		System.out.println("Serialisierung gestartet!");
 		
@@ -66,7 +65,7 @@ public class HeapTest {
 				Assert.assertEquals(write.deleteFirst(), read.deleteFirst());
 			}
 		} else {
-			System.out.println("Länge ist nicht gleich");
+			System.out.println("Laenge ist nicht gleich");
 		}
 		
 		System.out.println("Serialisierung beendet!");
